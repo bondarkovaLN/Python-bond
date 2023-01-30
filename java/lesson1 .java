@@ -1,55 +1,87 @@
-// Task 1
-public class Lesson1 {
-    public static void main(String[] args) {
-        // Task 6 (Test Task 2 - Task 5)
-        printThreeWords();
-        checkSumSign();
-        printColor();
-        compareNumbers();
-    }
+* Задать одномерный массив и найти в нем минимальный и максимальный
+     * элементы;
+     */
+    static int[] minMax(int[] array) {
+        int min = 0;
+        int max = 0;
 
-    //Task 2
-    public static void printThreeWords() {
-        System.out.println("Orange");
-        System.out.println("Banana");
-        System.out.println("Apple");
-    }
-
-    // Task 3
-    public static void checkSumSign() {
-        int a = 25;
-        int b = 30;
-        int sum = a + b;
-
-        if (sum >= 0) {
-            System.out.println("Сумма положительная");
-        } else {
-            System.out.println("Сумма отрицательная");
+        for (int item : array) {
+            if (item < min) min = item;
+            if (item > max) max = item;
         }
+        return new int[]{min, max};
     }
 
-    // Task 4
-    public static void printColor() {
-        int value = 100;
-
-        if (value <= 0) {
-            System.out.println("Красный");
-        } else if (value > 0 & value <= 100) {
-            System.out.println("Желтый");
+// 2*.Написать метод, который определяет, является ли год високосным,
+    // и возвращает boolean (високосный - true, не високосный - false).
+    // Каждый 4-й год является високосным, кроме каждого 100-го,
+    // при этом каждый 400-й – високосный.
+    public static boolean checkLeapYear (int year){
+        if (year % 400 == 0){
+            return true;
+        } else if (year % 100 == 0) {
+            return false;
         } else {
-            System.out.println("Зеленый");
+            return year % 4 == 0;
         }
-    }
 
-    // Task 5
-    public static void compareNumbers() {
-        int a = 10;
-        int b = 50;
-
-        if (a >= b) {
-            System.out.println("a >= b");
-        } else {
-            System.out.println("a < b");
-        }
     }
+}
+// 3..Дан массив nums = [3,2,2,3] и число val = 3.
+Если в массиве есть числа, равные заданному, нужно перенести эти элементы в конец массива.
+// Java program to move all values
+// equal to K to the end of the Array
+class GFG{
+ 
+// Function to move the element to the end
+static int[] moveElementToEnd(int []array,
+                              int toMove)
+{
+    // Mark left pointer
+    int i = 0;
+ 
+    // Mark the right pointer
+    int j = array.length - 1;
+ 
+    // Iterate until left pointer
+    // crosses the right pointer
+    while (i < j)
+    {
+        while (i < j && array[j] == toMove)
+ 
+            // Decrement right pointer
+            j--;
+ 
+        if (array[i] == toMove)
+ 
+            // Swap the two elements
+            // in the array
+            swap(array, i, j);
+ 
+        // Increment left pointer
+        i++;
+    }
+ 
+    // Return the result
+    return array;
+}
+ 
+static int[] swap(int []arr, int i, int j)
+{
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+    return arr;
+}
+ 
+// Driver code
+public static void main(String[] args)
+{
+    int []arr = { 1, 1, 3, 5, 6 };
+    int K = 1;
+    int []ans = moveElementToEnd(arr, K);
+ 
+    for(int i = 0; i < arr.length; i++)
+       System.out.print(ans[i] + " ");
+}
 }
